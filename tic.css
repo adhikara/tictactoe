@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+h1 {
+	font-family: 'PT Sans', sans-serif;
+	position: relative;
+}
+
+body {
+	font-family: 'PT Sans', sans-serif;
+}
+.center {
+	text-align: center;
+}
+
+.container {
+	position: relative;
+}
+
+hr {
+	border-top: 4px double;
+}
+
+#arena {
+   background-color: #b7b7b7;
+   max-width: 400px;
+   border-radius: 40px;
+   border: 25px solid #636363;
+   padding: 125px;
+   margin-top: 50px;
+   margin: 0 auto;
+   align-content:center;
+   position: relative;
+}
+
+.cButton {
+  border-radius: 30px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 100px;
+  background: #2881bd;
+  padding: 21px 60px 21px 60px;
+  text-decoration: none;
+}
+
+.cButton:hover {
+  background: #234961;
+  text-decoration: none;
+  cursor: pointer;
+}
