@@ -28,17 +28,32 @@ $(document).ready(function() {
 		console.log("does this work");
 	}
 
+	function eventX() {
+		$( ".cell" ).click(function() {
+			var change = ($(this).attr("id")).substr(-1);
+			if(arena[change] != 1) {
+				$(this).text("X");
+				console.log("arena updated");
+				arena[change] = 1;
+			}
+		});
+	}
+
+	function eventY() {
+		$( ".cell" ).click(function() {
+			var change = ($(this).attr("id")).substr(-1);
+			if(arena[change] != 1) {
+				$(this).text("O");
+				console.log("arena updated");
+				arena[change] = 1;
+			}
+		});
+	}
+
 	$( "#bX" ).click(function() {
 		$("#contents").fadeOut("fast", function() {
 			$(this).html(arenaHTML).fadeIn('slow', function() {
-				$( ".cell" ).click(function() {
-					var change = ($(this).attr("id")).substr(-1);
-					if(arena[change] != 1) {
-						$(this).text("X");
-						console.log("arena updated");
-						arena[change] = 1;
-					}
-				});
+				eventX();
 				//}
 			});
 		});
@@ -47,13 +62,7 @@ $(document).ready(function() {
 	$( "#bY" ).click(function() {
 		$("#contents").fadeOut("fast", function() {
 			$(this).html(arenaHTML).fadeIn('slow', function() {
-				$( ".cell" ).click(function() {
-					$(this).text("O");
-					var change = $(this).attr("id");
-					change = change.substr(-1);
-					console.log(change);
-					evaluate();
-				});
+				eventY();
 			});
 		});
 	});
