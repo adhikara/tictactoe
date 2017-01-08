@@ -21,39 +21,51 @@ var winIf = [[arena[0], arena[1], arena[2]],
              [arena[2], arena[4], arena[6]],
              ];
 
+var available = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+var turn = 1; // 1 = player; 0 = computer
+var playerSign = "";
+var computerSign = "";
 
 $(document).ready(function() {
 
-	function evaluate() {
-		console.log("does this work");
+	function weakComputer() {
+		//if(turn===0) {
+			var item = Math.floor(Math.random()*available.length);
+			here = available[item];
+			arena[here] = 2;
+			available.splice(item, 1);
+			$( "#cell"+here ).html(computerSign);
+			turn = 1;
+		//}
 	}
 
-	function eventX() {
+	function eventX(token) {
 		$( ".cell" ).click(function() {
-			var change = ($(this).attr("id")).substr(-1);
-			if(arena[change] != 1) {
-				$(this).text("X");
-				console.log("arena updated");
-				arena[change] = 1;
-			}
-		});
-	}
+			if(turn === 1) {
+				var change = ($(this).attr("id")).substr(-1);
+				if(arena[change] != 1) {
 
-	function eventY() {
-		$( ".cell" ).click(function() {
-			var change = ($(this).attr("id")).substr(-1);
-			if(arena[change] != 1) {
-				$(this).text("O");
-				console.log("arena updated");
-				arena[change] = 1;
+					var index = available.indexOf(change);
+					available.splice(index, 1);
+
+					$(this).text(token);
+					console.log("arena updated");
+					arena[change] = 1;
+					turn = 0;
+					console.log(turn);
+					weakComputer();
+				}
 			}
 		});
 	}
 
 	$( "#bX" ).click(function() {
 		$("#contents").fadeOut("fast", function() {
+			playerSign = "X";
+			computerSign = "O";
 			$(this).html(arenaHTML).fadeIn('slow', function() {
-				eventX();
+				eventX(playerSign);
 				//}
 			});
 		});
@@ -61,8 +73,10 @@ $(document).ready(function() {
 
 	$( "#bY" ).click(function() {
 		$("#contents").fadeOut("fast", function() {
+			playerSign = "O";
+			computerSign = "X";
 			$(this).html(arenaHTML).fadeIn('slow', function() {
-				eventY();
+				eventX(computerSign);
 			});
 		});
 	});
