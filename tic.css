@@ -25,12 +25,16 @@ hr {
    max-width: 400px;
    border-radius: 40px;
    border: 10px solid #c4c5c6;
-   padding: 125px;
+   padding: 75px;
    margin-top: 50px;
    margin: 0 auto;
    align-content:center;
    position: relative;
    overflow: hidden;
+}
+
+#status {
+	margin-left: 40px;
 }
 
 .cell {
